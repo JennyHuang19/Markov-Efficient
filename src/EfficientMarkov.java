@@ -11,7 +11,6 @@ import java.util.*;
 public class EfficientMarkov extends BaseMarkov {
 	private Map<String,ArrayList<String>> myMap;
 
-
 	/**
 	 * Constructs the default markov of 3-order.
 	 */
@@ -42,8 +41,8 @@ public class EfficientMarkov extends BaseMarkov {
 
 	@Override
 	public void setTraining(String text) {
-		myText = text;
 		myMap.clear();
+		myText = text;
 		String key;
 		String nextK;
 		//super.setTraining(text);
@@ -58,6 +57,7 @@ public class EfficientMarkov extends BaseMarkov {
 			//if key is the last word in file, add a pseudo-string to indicate the end.
 			if(myText.length() == i+myOrder){
 				myMap.get(key).add(PSEUDO_EOS);
+				break;
 			}
 			//if key already seen, move on the the next key as the next myOrder letters.
 			else{

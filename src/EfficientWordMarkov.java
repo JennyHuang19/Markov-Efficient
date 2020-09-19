@@ -26,6 +26,7 @@ public class EfficientWordMarkov extends BaseWordMarkov {
         //in order to construct the self, i must construct the parent.
         super(order);
         myOrder = order;
+        myMap = new HashMap<WordGram,ArrayList<String>>();
     }
 
     /**
@@ -38,7 +39,7 @@ public class EfficientWordMarkov extends BaseWordMarkov {
 
     @Override
     public void setTraining(String text) {
-        myMap = new HashMap<WordGram,ArrayList<String>>();
+        myMap.clear();
         //myWords is a file split on \\s+
         myWords = text.split("\\s+");
         String nextK;
@@ -54,6 +55,7 @@ public class EfficientWordMarkov extends BaseWordMarkov {
             //if key is the last word in file, add a pseudo-string to indicate the end.
             if(myWords.length == i+myOrder){
                 myMap.get(key).add(PSEUDO_EOS);
+                break;
             }
             //if key already seen, move on the the next key as the next myOrder letters.
             else{
