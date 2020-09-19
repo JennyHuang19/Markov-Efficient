@@ -2,8 +2,9 @@ import java.util.*;
 
 /**
  * This class is an extension of the BaseMarkov
- * with new constructors that use HashMaps
- * and a new method to construct and add to a HashMap.
+ * with new constructors that uses HashMaps
+ * and Overridden methods setTraining and
+ * getFollows to add to a HashMap.
  *
  */
 
@@ -34,7 +35,7 @@ public class EfficientMarkov extends BaseMarkov {
 	/**
 	 *The HashMap is constructed and the keys/values
 	 * added.
-	 * @param test is the training text
+	 * @param text is the training text
 	 * @return a HashMap with all the possible Markov keys
 	 * in the text and initializes the ArrayLists associated with keys.
 	 */
@@ -57,7 +58,6 @@ public class EfficientMarkov extends BaseMarkov {
 			//if key is the last word in file, add a pseudo-string to indicate the end.
 			if(myText.length() == i+myOrder){
 				myMap.get(key).add(PSEUDO_EOS);
-				break;
 			}
 			//if key already seen, move on the the next key as the next myOrder letters.
 			else{
